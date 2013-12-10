@@ -1,0 +1,5 @@
+lw_oopc: memory leak:
+memory leak in: 00791990, size: 20, file: c:\projects\expradvance\expr.c, line: 22
+memory leak in: 00791808, size: 24, file: c:\projects\expradvance\expr.c, line: 41
+memory leak in: 00791670, size: 40, file: c:\projects\expradvance\expr.c, line: 40
+memory leak in: 00794D98, size: 40, file: c:\projects\expradvance\main.c, line: 6
