@@ -24,9 +24,9 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#include "stdio.h"
-#include "stdlib.h"
-#include "string.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "lw_oopc.h"
 
 // 是否支持调试信息打印(内存分配和释放的详细信息），缺省关闭打印
@@ -38,7 +38,7 @@
     #define lw_oopc_dbginfo
 #endif
 
-#define LW_OOPC_MAX_PATH   260
+#define LW_OOPC_MAX_PATH   (260)
 #define LW_OOPC_MEMORY_DETECTOR_RST "memory_detector_result.txt"
 
 typedef struct LW_OOPC_MemAllocUnit
@@ -125,7 +125,7 @@ void lw_oopc_report()
     LW_OOPC_MemAllocUnit* currUnit = lw_oopc_memAllocList;
     FILE* fp = fopen(LW_OOPC_MEMORY_DETECTOR_RST, "w+");
 
-    if(!fp)
+    if (!fp)
     {
         fprintf(stderr, "lw_oopc: error occured, open file: %s failed.\n", LW_OOPC_MEMORY_DETECTOR_RST);
     }
@@ -157,7 +157,7 @@ void lw_oopc_report()
         }
     }
 
-    if(fp)
+    if (fp)
     {
         fclose(fp);
     }

@@ -1,5 +1,5 @@
-#include "stdio.h"
-#include "string.h"
+#include <stdio.h>
+#include <string.h>
 #include "animal.h"
 
 /* 设置动物的昵称 */
