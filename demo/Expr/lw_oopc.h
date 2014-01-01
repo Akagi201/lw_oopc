@@ -36,11 +36,11 @@
 // 是否支持内存泄露检测，缺省不支持
 //#define LW_OOPC_SUPPORT_MEMORY_LEAK_DETECTOR
 
-#include "malloc.h"
+#include <malloc.h>
 
 typedef int lw_oopc_bool;
-#define lw_oopc_true	1
-#define lw_oopc_false	0
+#define lw_oopc_true	(1)
+#define lw_oopc_false	(0)
 
 #ifdef LW_OOPC_USE_STDDEF_OFFSETOF
 #include <stddef.h>
@@ -150,7 +150,7 @@ void type##_ctor(type* cthis) {
 
 #define EXTENDS(type)		struct type type
 
-#define SUPER_PTR(cthis, father) ((father*)(&(cthis->##father)))
+#define SUPER_PTR(cthis, father) ((father*)(&(cthis->father)))
 
 #define SUPER_PTR_2(cthis, father, grandfather) \
 	SUPER_PTR(SUPER_PTR(cthis, father), grandfather)

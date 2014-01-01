@@ -91,7 +91,7 @@ void lw_oopc_free(void* memblock)
     LW_OOPC_MemAllocUnit* prevUnit = 0;
     LW_OOPC_MemAllocUnit* currUnit = lw_oopc_memAllocList;
 
-    while(currUnit != 0)
+    while (currUnit != 0)
     {
         if (currUnit->addr == memblock)
         {
@@ -133,15 +133,15 @@ void lw_oopc_report()
     if (currUnit != 0)
     {
         fprintf(stderr, "lw_oopc: memory leak:\n");
-        if(fp)
+        if (fp)
         {
             fprintf(fp, "lw_oopc: memory leak:\n");
         }
 
-        while(currUnit != 0)
+        while (currUnit != 0)
         {
             fprintf(stderr, "memory leak in: %p, size: %d, file: %s, line: %d\n", currUnit->addr, currUnit->size, currUnit->file, currUnit->line);
-            if(fp)
+            if (fp)
             {
                 fprintf(fp, "memory leak in: %p, size: %d, file: %s, line: %d\n", currUnit->addr, currUnit->size, currUnit->file, currUnit->line);
             }
@@ -151,7 +151,7 @@ void lw_oopc_report()
     else
     {
         printf("lw_oopc: no memory leak.\n");
-        if(fp)
+        if (fp)
         {
             fprintf(fp, "lw_oopc: no memory leak.\n");
         }

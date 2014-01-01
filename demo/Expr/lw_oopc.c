@@ -24,9 +24,9 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#include "stdio.h"
-#include "stdlib.h"
-#include "string.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "lw_oopc.h"
 
 // 是否支持调试信息打印(内存分配和释放的详细信息），缺省关闭打印
@@ -38,7 +38,7 @@
     #define lw_oopc_dbginfo
 #endif
 
-#define LW_OOPC_MAX_PATH   260
+#define LW_OOPC_MAX_PATH   (260)
 #define LW_OOPC_MEMORY_DETECTOR_RST "memory_detector_result.txt"
 
 typedef struct LW_OOPC_MemAllocUnit
@@ -91,7 +91,7 @@ void lw_oopc_free(void* memblock)
     LW_OOPC_MemAllocUnit* prevUnit = 0;
     LW_OOPC_MemAllocUnit* currUnit = lw_oopc_memAllocList;
 
-    while(currUnit != 0)
+    while (currUnit != 0)
     {
         if (currUnit->addr == memblock)
         {
@@ -125,7 +125,7 @@ void lw_oopc_report()
     LW_OOPC_MemAllocUnit* currUnit = lw_oopc_memAllocList;
     FILE* fp = fopen(LW_OOPC_MEMORY_DETECTOR_RST, "w+");
 
-    if(!fp)
+    if (!fp)
     {
         fprintf(stderr, "lw_oopc: error occured, open file: %s failed.\n", LW_OOPC_MEMORY_DETECTOR_RST);
     }
@@ -133,15 +133,15 @@ void lw_oopc_report()
     if (currUnit != 0)
     {
         fprintf(stderr, "lw_oopc: memory leak:\n");
-        if(fp)
+        if (fp)
         {
             fprintf(fp, "lw_oopc: memory leak:\n");
         }
 
-        while(currUnit != 0)
+        while (currUnit != 0)
         {
             fprintf(stderr, "memory leak in: %p, size: %d, file: %s, line: %d\n", currUnit->addr, currUnit->size, currUnit->file, currUnit->line);
-            if(fp)
+            if (fp)
             {
                 fprintf(fp, "memory leak in: %p, size: %d, file: %s, line: %d\n", currUnit->addr, currUnit->size, currUnit->file, currUnit->line);
             }
@@ -151,13 +151,13 @@ void lw_oopc_report()
     else
     {
         printf("lw_oopc: no memory leak.\n");
-        if(fp)
+        if (fp)
         {
             fprintf(fp, "lw_oopc: no memory leak.\n");
         }
     }
 
-    if(fp)
+    if (fp)
     {
         fclose(fp);
     }

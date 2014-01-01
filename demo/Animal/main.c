@@ -34,7 +34,7 @@ int main()
     moveObjs[2] = SUPER_PTR(car, IMoveable);  
 
     // 循环打印动物容器内的动物信息
-    for(i=0; i<2; i++)
+    for (i=0; i<2; i++)
     {
         Animal* animal = animals[i];
         animal->eat(animal);
@@ -43,7 +43,7 @@ int main()
     }
 
     // 循环打印可移动物体容器内的可移动物体移动方式的信息
-    for(j=0; j<3; j++)
+    for (j=0; j<3; j++)
     {
         IMoveable* moveObj = moveObjs[j];
         moveObj->move(moveObj);
