@@ -688,8 +688,8 @@ printf("\n");
 
 ### 参考资料
 
-1. 高焕堂, <UML+OOPC嵌入式C语言开发精讲>, 电子工业出版社, 2008年9月.
-2. <Object-oriented Programming with ANSI-C>, 下载地址: <http://www.planetpdf.com/codecuts/pdfs/ooc.pdf> .
+1. 高焕堂, \<UML+OOPC嵌入式C语言开发精讲\>, 电子工业出版社, 2008年9月.
+2. \<Object-oriented Programming with ANSI-C\>, 下载地址: <http://www.planetpdf.com/codecuts/pdfs/ooc.pdf> .
 3. C实现面向对象的方法, <http://www.eventhelix.com/RealtimeMantra/basics/object_oriented_programming_in_c.htm> .
 
 
