@@ -1,39 +1,39 @@
-#include "animal.h"
+ï»¿#include "animal.h"
 
 int main()
 {    
-    Fish* fish = Fish_new();    // ´´½¨Óã¶ÔÏó
-    Dog* dog = Dog_new();       // ´´½¨¹·¶ÔÏó
-    Car* car = Car_new();       // ´´½¨³µ×Ó¶ÔÏó
+    Fish* fish = Fish_new();    // åˆ›å»ºé±¼å¯¹è±¡
+    Dog* dog = Dog_new();       // åˆ›å»ºç‹—å¯¹è±¡
+    Car* car = Car_new();       // åˆ›å»ºè½¦å­å¯¹è±¡
 
-    Animal* animals[2] = { 0 };     // ³õÊ¼»¯¶¯ÎïÈÝÆ÷£¨ÕâÀïÊÇAnimalÖ¸ÕëÊý×é)
-    IMoveable* moveObjs[3] = { 0 }; // ³õÊ¼»¯¿ÉÒÆ¶¯ÎïÌåÈÝÆ÷£¨ÕâÀïÊÇIMoveableÖ¸ÕëÊý×é)
+    Animal* animals[2] = { 0 };     // åˆå§‹åŒ–åŠ¨ç‰©å®¹å™¨ï¼ˆè¿™é‡Œæ˜¯AnimalæŒ‡é’ˆæ•°ç»„)
+    IMoveable* moveObjs[3] = { 0 }; // åˆå§‹åŒ–å¯ç§»åŠ¨ç‰©ä½“å®¹å™¨ï¼ˆè¿™é‡Œæ˜¯IMoveableæŒ‡é’ˆæ•°ç»„)
 
-    int i = 0;                  // iºÍjÊÇÑ­»·±äÁ¿
+    int i = 0;                  // iå’Œjæ˜¯å¾ªçŽ¯å˜é‡
     int j = 0;
 
-    // ³õÊ¼»¯Óã¶ÔÏóµÄêÇ³ÆÎª£ºÐ¡ÀðÓã£¬ÄêÁäÎª£º1Ëê
-    fish->init(fish, "Ð¡ÀðÓã", 1);
+    // åˆå§‹åŒ–é±¼å¯¹è±¡çš„æ˜µç§°ä¸ºï¼šå°é²¤é±¼ï¼Œå¹´é¾„ä¸ºï¼š1å²
+    fish->init(fish, "å°é²¤é±¼", 1);
 
-    // ½«fishÖ¸Õë×ªÐÍÎªAnimalÀàÐÍÖ¸Õë£¬²¢¸³Öµ¸øanimalsÊý×éµÄµÚÒ»¸ö³ÉÔ±
+    // å°†fishæŒ‡é’ˆè½¬åž‹ä¸ºAnimalç±»åž‹æŒ‡é’ˆï¼Œå¹¶èµ‹å€¼ç»™animalsæ•°ç»„çš„ç¬¬ä¸€ä¸ªæˆå‘˜
     animals[0] = SUPER_PTR(fish, Animal);
 
-    // ³õÊ¼»¯¹·¶ÔÏóµÄêÇ³ÆÎª£ºÄÁÑòÈ®£¬ÄêÁäÎª£º2Ëê
-    dog->init(dog, "ÄÁÑòÈ®", 2);
+    // åˆå§‹åŒ–ç‹—å¯¹è±¡çš„æ˜µç§°ä¸ºï¼šç‰§ç¾ŠçŠ¬ï¼Œå¹´é¾„ä¸ºï¼š2å²
+    dog->init(dog, "ç‰§ç¾ŠçŠ¬", 2);
 
-    // ½«dogÖ¸Õë×ªÐÍÎªAnimalÀàÐÍÖ¸Õë£¬²¢¸³Öµ¸øanimalsÊý×éµÄµÚ¶þ¸ö³ÉÔ±
+    // å°†dogæŒ‡é’ˆè½¬åž‹ä¸ºAnimalç±»åž‹æŒ‡é’ˆï¼Œå¹¶èµ‹å€¼ç»™animalsæ•°ç»„çš„ç¬¬äºŒä¸ªæˆå‘˜
     animals[1] = SUPER_PTR(dog, Animal);
 
-    // ½«fishÖ¸Õë×ªÐÍÎªIMoveable½Ó¿ÚÀàÐÍÖ¸Õë£¬²¢¸³Öµ¸ømoveObjsÊý×éµÄµÚÒ»¸ö³ÉÔ±
+    // å°†fishæŒ‡é’ˆè½¬åž‹ä¸ºIMoveableæŽ¥å£ç±»åž‹æŒ‡é’ˆï¼Œå¹¶èµ‹å€¼ç»™moveObjsæ•°ç»„çš„ç¬¬ä¸€ä¸ªæˆå‘˜
     moveObjs[0] = SUPER_PTR(fish, IMoveable);
 
-    // ½«dogÖ¸Õë×ªÐÍÎªIMoveable½Ó¿ÚÀàÐÍÖ¸Õë£¬²¢¸³Öµ¸ømoveObjsÊý×éµÄµÚ¶þ¸ö³ÉÔ±
+    // å°†dogæŒ‡é’ˆè½¬åž‹ä¸ºIMoveableæŽ¥å£ç±»åž‹æŒ‡é’ˆï¼Œå¹¶èµ‹å€¼ç»™moveObjsæ•°ç»„çš„ç¬¬äºŒä¸ªæˆå‘˜
     moveObjs[1] = SUPER_PTR(dog, IMoveable);
 
-    // ½«carÖ¸Õë×ªÐÍÎªIMoveable½Ó¿ÚÀàÐÍÖ¸Õë£¬²¢¸³Öµ¸ømoveObjsÊý×éµÄµÚÈý¸ö³ÉÔ±
+    // å°†caræŒ‡é’ˆè½¬åž‹ä¸ºIMoveableæŽ¥å£ç±»åž‹æŒ‡é’ˆï¼Œå¹¶èµ‹å€¼ç»™moveObjsæ•°ç»„çš„ç¬¬ä¸‰ä¸ªæˆå‘˜
     moveObjs[2] = SUPER_PTR(car, IMoveable);
 
-    // Ñ­»·´òÓ¡¶¯ÎïÈÝÆ÷ÄÚµÄ¶¯ÎïÐÅÏ¢
+    // å¾ªçŽ¯æ‰“å°åŠ¨ç‰©å®¹å™¨å†…çš„åŠ¨ç‰©ä¿¡æ¯
     for (i = 0; i < 2; ++i)
     {
         Animal* animal = animals[i];
@@ -42,7 +42,7 @@ int main()
         animal->sayHello(animal);
     }
 
-    // Ñ­»·´òÓ¡¿ÉÒÆ¶¯ÎïÌåÈÝÆ÷ÄÚµÄ¿ÉÒÆ¶¯ÎïÌåÒÆ¶¯·½Ê½µÄÐÅÏ¢
+    // å¾ªçŽ¯æ‰“å°å¯ç§»åŠ¨ç‰©ä½“å®¹å™¨å†…çš„å¯ç§»åŠ¨ç‰©ä½“ç§»åŠ¨æ–¹å¼çš„ä¿¡æ¯
     for (j = 0; j < 3; ++j)
     {
         IMoveable* moveObj = moveObjs[j];

@@ -1,38 +1,38 @@
-#ifndef ANIMAL_H_INCLUDED_
+ï»¿#ifndef ANIMAL_H_INCLUDED_
 #define ANIMAL_H_INCLUDED_
 
 #include "lw_oopc.h"
 
 INTERFACE(IMoveable)
 {
-    void (*move)(IMoveable* t);     // MoveĞĞÎª
+    void (*move)(IMoveable* t);     // Moveè¡Œä¸º
 };
 
 ABS_CLASS(Animal)
 {
-    char name[128];     // ¶¯ÎïµÄêÇ³Æ(¼ÙÉèĞ¡ÓÚ128¸ö×Ö·û)
-    int age;            // ¶¯ÎïµÄÄêÁä
+    char name[128];     // åŠ¨ç‰©çš„æ˜µç§°(å‡è®¾å°äº128ä¸ªå­—ç¬¦)
+    int age;            // åŠ¨ç‰©çš„å¹´é¾„
 
-    void (*setName)(Animal* t, const char* name);   // ÉèÖÃ¶¯ÎïµÄêÇ³Æ
-    void (*setAge)(Animal* t, int age);             // ÉèÖÃ¶¯ÎïµÄÄêÁä 
-    void (*sayHello)(Animal* t);                    // ¶¯Îï´òÕĞºô
-    void (*eat)(Animal* t);                         // ¶¯Îï¶¼»á³Ô£¨³éÏó·½·¨£¬ÓÉ×ÓÀàÊµÏÖ£©
-    void (*breathe)(Animal* t);                     // ¶¯Îï¶¼»áºôÎü£¨³éÏó·½·¨£¬ÓÉ×ÓÀàÊµÏÖ£©
-    void (*init)(Animal* t, const char* name, int age); // ³õÊ¼»¯êÇ³ÆºÍÄêÁä
+    void (*setName)(Animal* t, const char* name);   // è®¾ç½®åŠ¨ç‰©çš„æ˜µç§°
+    void (*setAge)(Animal* t, int age);             // è®¾ç½®åŠ¨ç‰©çš„å¹´é¾„ 
+    void (*sayHello)(Animal* t);                    // åŠ¨ç‰©æ‰“æ‹›å‘¼
+    void (*eat)(Animal* t);                         // åŠ¨ç‰©éƒ½ä¼šåƒï¼ˆæŠ½è±¡æ–¹æ³•ï¼Œç”±å­ç±»å®ç°ï¼‰
+    void (*breathe)(Animal* t);                     // åŠ¨ç‰©éƒ½ä¼šå‘¼å¸ï¼ˆæŠ½è±¡æ–¹æ³•ï¼Œç”±å­ç±»å®ç°ï¼‰
+    void (*init)(Animal* t, const char* name, int age); // åˆå§‹åŒ–æ˜µç§°å’Œå¹´é¾„
 };
 
 CLASS(Fish)
 {
-    EXTENDS(Animal);        // ¼Ì³ĞAnimal³éÏóÀà
-    IMPLEMENTS(IMoveable);  // ÊµÏÖIMoveable½Ó¿Ú
+    EXTENDS(Animal);        // ç»§æ‰¿AnimalæŠ½è±¡ç±»
+    IMPLEMENTS(IMoveable);  // å®ç°IMoveableæ¥å£
 
     void (*init)(Fish* t, const char* name, int age);
 };
 
 CLASS(Dog)
 {
-    EXTENDS(Animal);        // ¼Ì³ĞAnimal³éÏóÀà
-    IMPLEMENTS(IMoveable);  // ÊµÏÖIMoveable½Ó¿Ú
+    EXTENDS(Animal);        // ç»§æ‰¿AnimalæŠ½è±¡ç±»
+    IMPLEMENTS(IMoveable);  // å®ç°IMoveableæ¥å£
 
 
     void(*init)(Dog* t, const char* name, int age);
@@ -40,7 +40,7 @@ CLASS(Dog)
 
 CLASS(Car)
 {
-    IMPLEMENTS(IMoveable);  // ÊµÏÖIMoveable½Ó¿Ú£¨³µ×Ó²»ÊÇ¶¯Îï£¬µ«¿ÉÒÔMove£©
+    IMPLEMENTS(IMoveable);  // å®ç°IMoveableæ¥å£ï¼ˆè½¦å­ä¸æ˜¯åŠ¨ç‰©ï¼Œä½†å¯ä»¥Moveï¼‰
 };
 
 #endif

@@ -1,86 +1,86 @@
-#ifndef EXPR_H_INCLUDED_
+ï»¿#ifndef EXPR_H_INCLUDED_
 #define EXPR_H_INCLUDED_
 
 #include "lw_oopc.h"
 
-// ±í´ïÊ½½Úµã
+// è¡¨è¾¾å¼èŠ‚ç‚¹
 ABS_CLASS(Expr_node) {
-  int use;        // ÒýÓÃ¼ÆÊý
+  int use;        // å¼•ç”¨è®¡æ•°
 
-  void (* print)(Expr_node* t);        // ´òÓ¡±í´ïÊ½½Úµã
+  void (* print)(Expr_node* t);        // æ‰“å°è¡¨è¾¾å¼èŠ‚ç‚¹
                                        //int (*eval)(Expr_node* t, int* value);
-  void (* finalize)(Expr_node* t);     // ×ÓÀàÍ¨¹ý¸²Ð´finalize·½·¨£¬ÊµÏÖ¶Ô×ÊÔ´ÇåÀíÐÐÎªµÄ¶¨ÖÆ
+  void (* finalize)(Expr_node* t);     // å­ç±»é€šè¿‡è¦†å†™finalizeæ–¹æ³•ï¼Œå®žçŽ°å¯¹èµ„æºæ¸…ç†è¡Œä¸ºçš„å®šåˆ¶
 };
 
-// ±í´ïÊ½£¨×ÓÊ÷µÄ¸ÅÄî£©£¬ÆäÖÐ£¬init*·½·¨×åÌá¹©ÁË¹¹½¨×ÓÊ÷µÄ¸ß²ãAPI£¬·½±ãÓÃ»§Ê¹ÓÃ
+// è¡¨è¾¾å¼ï¼ˆå­æ ‘çš„æ¦‚å¿µï¼‰ï¼Œå…¶ä¸­ï¼Œinit*æ–¹æ³•æ—æä¾›äº†æž„å»ºå­æ ‘çš„é«˜å±‚APIï¼Œæ–¹ä¾¿ç”¨æˆ·ä½¿ç”¨
 CLASS(Expr) {
-  int use;        // ÒýÓÃ¼ÆÊý
-  Expr_node* p;   // ×ÓÊ÷µÄ¸ù½Úµã
+  int use;        // å¼•ç”¨è®¡æ•°
+  Expr_node* p;   // å­æ ‘çš„æ ¹èŠ‚ç‚¹
 
-  // ¹¹½¨ÕûÊý±í´ïÊ½£¨°üº¬Ò»¸öÕûÊýÖµ£¬ÎÞ×Ó±í´ïÊ½£©
+  // æž„å»ºæ•´æ•°è¡¨è¾¾å¼ï¼ˆåŒ…å«ä¸€ä¸ªæ•´æ•°å€¼ï¼Œæ— å­è¡¨è¾¾å¼ï¼‰
   void (* initInt)(Expr* t, int);
 
-  // ¹¹½¨Ò»Ôª±í´ïÊ½£¨°üº¬Ò»¸ö²Ù×÷·û£¬Ò»¸ö×Ó±í´ïÊ½£©
+  // æž„å»ºä¸€å…ƒè¡¨è¾¾å¼ï¼ˆåŒ…å«ä¸€ä¸ªæ“ä½œç¬¦ï¼Œä¸€ä¸ªå­è¡¨è¾¾å¼ï¼‰
   void (* initUnary)(Expr* t, const char*, Expr*);
-  // ¹¹½¨Ò»Ôª±í´ïÊ½µÄÖØÔØÐÎÊ½(Í¨¹ý´«ÈëÒ»¸öÕûÐÍÖµ²ÎÊý£¬¹¹ÔìÒ»¸ö×Ó±í´ïÊ½ÎªÕûÊý±í´ïÊ½µÄÒ»Ôª±í´ïÊ½£©
+  // æž„å»ºä¸€å…ƒè¡¨è¾¾å¼çš„é‡è½½å½¢å¼(é€šè¿‡ä¼ å…¥ä¸€ä¸ªæ•´åž‹å€¼å‚æ•°ï¼Œæž„é€ ä¸€ä¸ªå­è¡¨è¾¾å¼ä¸ºæ•´æ•°è¡¨è¾¾å¼çš„ä¸€å…ƒè¡¨è¾¾å¼ï¼‰
   void (* initUnaryX)(Expr* t, const char*, int);
 
-  // ¹¹½¨¶þÔª±í´ïÊ½£¨°üº¬Ò»¸ö²Ù×÷·û£¬¶þ¸ö×Ó±í´ïÊ½£©
+  // æž„å»ºäºŒå…ƒè¡¨è¾¾å¼ï¼ˆåŒ…å«ä¸€ä¸ªæ“ä½œç¬¦ï¼ŒäºŒä¸ªå­è¡¨è¾¾å¼ï¼‰
   void (* initBinary)(Expr* t, const char*, Expr*, Expr*);
-  // ¹¹½¨¶þÔª±í´ïÊ½µÄÖØÔØÐÎÊ½(Í¨¹ý´«ÈëÁ½¸öÕûÐÍÖµ²ÎÊý£¬¹¹ÔìÁ½¸ö×Ó±í´ïÊ½¾ùÎªÕûÊý±í´ïÊ½µÄ¶þÔª±í´ïÊ½£©
+  // æž„å»ºäºŒå…ƒè¡¨è¾¾å¼çš„é‡è½½å½¢å¼(é€šè¿‡ä¼ å…¥ä¸¤ä¸ªæ•´åž‹å€¼å‚æ•°ï¼Œæž„é€ ä¸¤ä¸ªå­è¡¨è¾¾å¼å‡ä¸ºæ•´æ•°è¡¨è¾¾å¼çš„äºŒå…ƒè¡¨è¾¾å¼ï¼‰
   void (* initBinaryX)(Expr* t, const char*, int, int);
 
-  // ¹¹½¨ÈýÔª±í´ïÊ½£¨°üº¬Ò»¸ö²Ù×÷·û£¬Èý¸ö×Ó±í´ïÊ½£©
+  // æž„å»ºä¸‰å…ƒè¡¨è¾¾å¼ï¼ˆåŒ…å«ä¸€ä¸ªæ“ä½œç¬¦ï¼Œä¸‰ä¸ªå­è¡¨è¾¾å¼ï¼‰
   void (* initTernary)(Expr* t, const char*, Expr*, Expr*, Expr*);
-  // ¹¹½¨ÈýÔª±í´ïÊ½µÄÖØÔØÐÎÊ½(Í¨¹ý´«ÈëÈý¸öÕûÐÍÖµ²ÎÊý£¬¹¹ÔìÈý¸ö×Ó±í´ïÊ½¾ùÎªÕûÊý±í´ïÊ½µÄÈýÔª±í´ïÊ½£©
+  // æž„å»ºä¸‰å…ƒè¡¨è¾¾å¼çš„é‡è½½å½¢å¼(é€šè¿‡ä¼ å…¥ä¸‰ä¸ªæ•´åž‹å€¼å‚æ•°ï¼Œæž„é€ ä¸‰ä¸ªå­è¡¨è¾¾å¼å‡ä¸ºæ•´æ•°è¡¨è¾¾å¼çš„ä¸‰å…ƒè¡¨è¾¾å¼ï¼‰
   void (* initTernaryX)(Expr* t, const char*, int, int, int);
 
-  void (* print)(Expr* t);     // ´òÓ¡×ÓÊ÷
+  void (* print)(Expr* t);     // æ‰“å°å­æ ‘
 };
 
-// ÕûÊý±í´ïÊ½½Úµã
+// æ•´æ•°è¡¨è¾¾å¼èŠ‚ç‚¹
 CLASS(Int_node) {
-  EXTENDS(Expr_node);     // ¼Ì³ÐExpr_node
+  EXTENDS(Expr_node);     // ç»§æ‰¿Expr_node
 
-  int n;                  // ÕûÊýÖµ
+  int n;                  // æ•´æ•°å€¼
 
-  // ³õÊ¼»¯ÕûÊý±í´ïÊ½½Úµã£¨´«ÈëÕûÊýÖµ£©
+  // åˆå§‹åŒ–æ•´æ•°è¡¨è¾¾å¼èŠ‚ç‚¹ï¼ˆä¼ å…¥æ•´æ•°å€¼ï¼‰
   void (* init)(Int_node* t, int k);
 };
 
-// Ò»Ôª±í´ïÊ½½Úµã
+// ä¸€å…ƒè¡¨è¾¾å¼èŠ‚ç‚¹
 CLASS(Unary_node) {
-  EXTENDS(Expr_node);     // ¼Ì³ÐExpr_node
+  EXTENDS(Expr_node);     // ç»§æ‰¿Expr_node
 
-  char op[3];             // ¼ÙÉè²Ù×÷·û×î³¤²»³¬¹ý2¸ö×Ö·û
-  Expr* opnd;             // ×Ó±í´ïÊ½
+  char op[3];             // å‡è®¾æ“ä½œç¬¦æœ€é•¿ä¸è¶…è¿‡2ä¸ªå­—ç¬¦
+  Expr* opnd;             // å­è¡¨è¾¾å¼
 
-  // ³õÊ¼»¯Ò»Ôª±í´ïÊ½½Úµã£¨´«Èë²Ù×÷·ûºÍ1¸ö×Ó±í´ïÊ½£©
+  // åˆå§‹åŒ–ä¸€å…ƒè¡¨è¾¾å¼èŠ‚ç‚¹ï¼ˆä¼ å…¥æ“ä½œç¬¦å’Œ1ä¸ªå­è¡¨è¾¾å¼ï¼‰
   void (* init)(Unary_node* t, const char* a, Expr* b);
 };
 
-// ¶þÔª±í´ïÊ½½Úµã
+// äºŒå…ƒè¡¨è¾¾å¼èŠ‚ç‚¹
 CLASS(Binary_node) {
-  EXTENDS(Expr_node);     // ¼Ì³ÐExpr_node
+  EXTENDS(Expr_node);     // ç»§æ‰¿Expr_node
 
-  char op[3];             // ¼ÙÉè²Ù×÷·û×î³¤²»³¬¹ý2¸ö×Ö·û
-  Expr* left;             // ×ó×Ó±í´ïÊ½
-  Expr* right;            // ÓÒ×Ó±í´ïÊ½
+  char op[3];             // å‡è®¾æ“ä½œç¬¦æœ€é•¿ä¸è¶…è¿‡2ä¸ªå­—ç¬¦
+  Expr* left;             // å·¦å­è¡¨è¾¾å¼
+  Expr* right;            // å³å­è¡¨è¾¾å¼
 
-  // ³õÊ¼»¯¶þÔª±í´ïÊ½½Úµã£¨´«Èë²Ù×÷·ûºÍ2¸ö×Ó±í´ïÊ½£©
+  // åˆå§‹åŒ–äºŒå…ƒè¡¨è¾¾å¼èŠ‚ç‚¹ï¼ˆä¼ å…¥æ“ä½œç¬¦å’Œ2ä¸ªå­è¡¨è¾¾å¼ï¼‰
   void (* init)(Binary_node* t, const char* a, Expr* b, Expr* c);
 };
 
-// ÈýÔª±í´ïÊ½½Úµã
+// ä¸‰å…ƒè¡¨è¾¾å¼èŠ‚ç‚¹
 CLASS(Ternary_node) {
   EXTENDS(Expr_node);
 
-  char op[3];             // ¼ÙÉè²Ù×÷·û×î³¤²»³¬¹ý2¸ö×Ö·û
+  char op[3];             // å‡è®¾æ“ä½œç¬¦æœ€é•¿ä¸è¶…è¿‡2ä¸ªå­—ç¬¦
   Expr* left;
   Expr* middle;
   Expr* right;
 
-  // ³õÊ¼»¯ÈýÔª±í´ïÊ½½Úµã£¨´«Èë²Ù×÷·ûºÍ3¸ö×Ó±í´ïÊ½£©
+  // åˆå§‹åŒ–ä¸‰å…ƒè¡¨è¾¾å¼èŠ‚ç‚¹ï¼ˆä¼ å…¥æ“ä½œç¬¦å’Œ3ä¸ªå­è¡¨è¾¾å¼ï¼‰
   void (* init)(Ternary_node* t, const char* op, Expr* left, Expr* middle, Expr* right);
 };
 

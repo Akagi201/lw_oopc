@@ -1,6 +1,6 @@
-// Copyright (C) 2008,2009,2010 by Tom Kao & MISOO Team & Yonghua Jin. All rights reserved.
+ï»¿// Copyright (C) 2008,2009,2010 by Tom Kao & MISOO Team & Yonghua Jin. All rights reserved.
 // Released under the terms of the GNU Library or Lesser General Public License (LGPL).
-// Author: Tom Kao(ÖĞÎÄÃû£º¸ß»ÀÌÃ)£¬MISOOÍÅ¶Ó£¬Yonghua Jin(ÖĞÎÄÃû£º½ğÓÀ»ª)
+// Author: Tom Kao(ä¸­æ–‡åï¼šé«˜ç„•å ‚)ï¼ŒMISOOå›¢é˜Ÿï¼ŒYonghua Jin(ä¸­æ–‡åï¼šé‡‘æ°¸å)
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
@@ -40,11 +40,11 @@
 
 typedef struct LW_OOPC_MemAllocUnit
 {
-  char file[LW_OOPC_MAX_PATH];    // ÎÄ¼şÃû
-  int line;                       // ĞĞºÅ
-  void* addr;                     // ÄÚ´æµØÖ·
-  size_t size;                    // ÄÚ´æ¿é´óĞ¡
-  struct LW_OOPC_MemAllocUnit* next;     // ÏÂÒ»¸öÄÚ´æ¿é
+  char file[LW_OOPC_MAX_PATH];    // æ–‡ä»¶å
+  int line;                       // è¡Œå·
+  void* addr;                     // å†…å­˜åœ°å€
+  size_t size;                    // å†…å­˜å—å¤§å°
+  struct LW_OOPC_MemAllocUnit* next;     // ä¸‹ä¸€ä¸ªå†…å­˜å—
 } LW_OOPC_MemAllocUnit;
 
 #ifdef LW_OOPC_SUPPORT_MEMORY_LEAK_DETECTOR

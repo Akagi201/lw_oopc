@@ -1,24 +1,24 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <string.h>
 #include "animal.h"
 
-/* ÉèÖÃ¶¯ÎïµÄêÇ³Æ */
+/* è®¾ç½®åŠ¨ç‰©çš„æ˜µç§° */
 void Animal_setName(Animal* t, const char* name)
 {
-    // ÕâÀï¼Ù¶¨nameĞ¡ÓÚ128¸ö×Ö·û£¬Îª¼ò»¯Ê¾Àı´úÂë£¬²»×ö±£»¤£¨²úÆ·´úÂëÖĞ²»ÒªÕâÑùĞ´£©
+    // è¿™é‡Œå‡å®šnameå°äº128ä¸ªå­—ç¬¦ï¼Œä¸ºç®€åŒ–ç¤ºä¾‹ä»£ç ï¼Œä¸åšä¿æŠ¤ï¼ˆäº§å“ä»£ç ä¸­ä¸è¦è¿™æ ·å†™ï¼‰
     strcpy(t->name, name);
 }
-/* ÉèÖÃ¶¯ÎïµÄÄêÁä */
+/* è®¾ç½®åŠ¨ç‰©çš„å¹´é¾„ */
 void Animal_setAge(Animal* t, int age)
 {
     t->age = age;
 }
-/* ¶¯ÎïºÍÎÒÃÇ´òÕĞºô */
+/* åŠ¨ç‰©å’Œæˆ‘ä»¬æ‰“æ‹›å‘¼ */
 void Animal_sayHello(Animal* t)
 {
-    printf("Hello! ÎÒÊÇ%s£¬½ñÄê%dËêÁË! \n", t->name, t->age);
+    printf("Hello! æˆ‘æ˜¯%sï¼Œä»Šå¹´%då²äº†! \n", t->name, t->age);
 }
-/* ³õÊ¼»¯¶¯ÎïµÄêÇ³ÆºÍÄêÁä */
+/* åˆå§‹åŒ–åŠ¨ç‰©çš„æ˜µç§°å’Œå¹´é¾„ */
 void Animal_init(Animal* t, const char* name, int age)
 {
     t->setName(t, name);
@@ -32,22 +32,22 @@ FUNCTION_SETTING(sayHello, Animal_sayHello);
 FUNCTION_SETTING(init, Animal_init);
 END_ABS_CTOR
 
-/* ÓãµÄ³ÔĞĞÎª */
+/* é±¼çš„åƒè¡Œä¸º */
 void Fish_eat(Animal* t)
 {
-    printf("Óã³ÔË®²İ! \n");
+    printf("é±¼åƒæ°´è‰! \n");
 }
-/* ÓãµÄºôÎüĞĞÎª */
+/* é±¼çš„å‘¼å¸è¡Œä¸º */
 void Fish_breathe(Animal* t)
 {
-    printf("ÓãÓÃÈúºôÎü! \n");
+    printf("é±¼ç”¨é³ƒå‘¼å¸! \n");
 }
-/* ÓãµÄÒÆ¶¯ĞĞÎª */
+/* é±¼çš„ç§»åŠ¨è¡Œä¸º */
 void Fish_move(IMoveable* t)
 {
-    printf("ÓãÔÚË®ÀïÓÎ! \n");
+    printf("é±¼åœ¨æ°´é‡Œæ¸¸! \n");
 }
-/* ³õÊ¼»¯ÓãµÄêÇ³ÆºÍÄêÁä */
+/* åˆå§‹åŒ–é±¼çš„æ˜µç§°å’Œå¹´é¾„ */
 void Fish_init(Fish* t, const char* name, int age)
 {
     Animal* animal = SUPER_PTR(t, Animal);
@@ -63,22 +63,22 @@ FUNCTION_SETTING(IMoveable.move, Fish_move);
 FUNCTION_SETTING(init, Fish_init);
 END_CTOR
 
-/* ¹·µÄ³ÔĞĞÎª */
+/* ç‹—çš„åƒè¡Œä¸º */
 void Dog_eat(Animal* t)
 {
-    printf("¹·³Ô¹ÇÍ·! \n");
+    printf("ç‹—åƒéª¨å¤´! \n");
 }
-/* ¹·µÄºôÎüĞĞÎª */
+/* ç‹—çš„å‘¼å¸è¡Œä¸º */
 void Dog_breathe(Animal* t)
 {
-    printf("¹·ÓÃ·ÎºôÎü! \n");
+    printf("ç‹—ç”¨è‚ºå‘¼å¸! \n");
 }
-/* ¹·µÄÒÆ¶¯ĞĞÎª */
+/* ç‹—çš„ç§»åŠ¨è¡Œä¸º */
 void Dog_move(IMoveable* t)
 {
-    printf("¹·ÔÚµØÉÏÅÜ! \n");
+    printf("ç‹—åœ¨åœ°ä¸Šè·‘! \n");
 }
-/* ³õÊ¼»¯¹·µÄêÇ³ÆºÍÄêÁä */
+/* åˆå§‹åŒ–ç‹—çš„æ˜µç§°å’Œå¹´é¾„ */
 void Dog_init(Dog* t, const char* name, int age)
 {
     Animal* animal = SUPER_PTR(t, Animal);
@@ -96,7 +96,7 @@ END_CTOR
 
 void Car_move(IMoveable* t)
 {
-    printf("Æû³µÔÚ¿ª¶¯! \n");
+    printf("æ±½è½¦åœ¨å¼€åŠ¨! \n");
 }
 
 CTOR(Car)

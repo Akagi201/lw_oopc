@@ -1,22 +1,22 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <string.h>
 #include "expr.h"
 
 ABS_CTOR(Expr_node)
-cthis->use = 1;             // ¹¹Ôìº¯ÊıÖĞ£¬½«ÒıÓÃ¼ÆÊı³õÊ¼»¯Îª1
+cthis->use = 1;             // æ„é€ å‡½æ•°ä¸­ï¼Œå°†å¼•ç”¨è®¡æ•°åˆå§‹åŒ–ä¸º1
 END_ABS_CTOR
 
-// Expr_nodeµÄÎö¹¹º¯Êı£¨DTOR/END_DTORÓÃÓÚÊµÏÖÎö¹¹º¯ÊıÓïÒå£©
+// Expr_nodeçš„ææ„å‡½æ•°ï¼ˆDTOR/END_DTORç”¨äºå®ç°ææ„å‡½æ•°è¯­ä¹‰ï¼‰
 DTOR(Expr_node)
-if (--cthis->use == 0) {      // µİ¼õÒıÓÃ¼ÆÊı£¬Èç¹û¼ÆÊıÎª0£¬ÊÍ·Å×Ô¼º
-  cthis->finalize(cthis); // ÊÍ·ÅÄÚ´æÖ®Ç°ÏÈÇåÀí×ÊÔ´(ÆäËûĞèÒªÊÍ·ÅµÄ¶ÔÏó£©
+if (--cthis->use == 0) {      // é€’å‡å¼•ç”¨è®¡æ•°ï¼Œå¦‚æœè®¡æ•°ä¸º0ï¼Œé‡Šæ”¾è‡ªå·±
+  cthis->finalize(cthis); // é‡Šæ”¾å†…å­˜ä¹‹å‰å…ˆæ¸…ç†èµ„æº(å…¶ä»–éœ€è¦é‡Šæ”¾çš„å¯¹è±¡ï¼‰
   return lw_oopc_true;
 }
 
 return lw_oopc_false;
 END_DTOR
 
-// ¹¹½¨ÕûÊı±í´ïÊ½£¨°üº¬Ò»¸öÕûÊıÖµ£¬ÎŞ×Ó±í´ïÊ½£©£¬nÎªÕûÊıÖµ
+// æ„å»ºæ•´æ•°è¡¨è¾¾å¼ï¼ˆåŒ…å«ä¸€ä¸ªæ•´æ•°å€¼ï¼Œæ— å­è¡¨è¾¾å¼ï¼‰ï¼Œnä¸ºæ•´æ•°å€¼
 void Expr_initInt(Expr* expr, int n) {
   Int_node* intNode = Int_node_new(lw_oopc_file_line);
   intNode->init(intNode, n);
@@ -24,15 +24,15 @@ void Expr_initInt(Expr* expr, int n) {
   expr->p = SUPER_PTR(intNode, Expr_node);
 }
 
-// ¹¹½¨Ò»Ôª±í´ïÊ½£¨°üº¬Ò»¸ö²Ù×÷·û£¬Ò»¸ö×Ó±í´ïÊ½£©£¬opÎª²Ù×÷·û£¬opndÎª×Ó±í´ïÊ½
+// æ„å»ºä¸€å…ƒè¡¨è¾¾å¼ï¼ˆåŒ…å«ä¸€ä¸ªæ“ä½œç¬¦ï¼Œä¸€ä¸ªå­è¡¨è¾¾å¼ï¼‰ï¼Œopä¸ºæ“ä½œç¬¦ï¼Œopndä¸ºå­è¡¨è¾¾å¼
 void Expr_initUnary(Expr* expr, const char* op, Expr* opnd) {
   Unary_node* unaryNode = Unary_node_new(lw_oopc_file_line);
   unaryNode->init(unaryNode, op, opnd);
   expr->p = SUPER_PTR(unaryNode, Expr_node);
 }
 
-// ¹¹½¨Ò»Ôª±í´ïÊ½µÄÖØÔØĞÎÊ½(Í¨¹ı´«ÈëÒ»¸öÕûĞÍÖµ²ÎÊı£¬¹¹ÔìÒ»¸ö×Ó±í´ïÊ½ÎªÕûÊı±í´ïÊ½µÄÒ»Ôª±í´ïÊ½£©
-// opÎª²Ù×÷·û£¬aÎª×Ó±í´ïÊ½µÄÕûĞÍÖµ
+// æ„å»ºä¸€å…ƒè¡¨è¾¾å¼çš„é‡è½½å½¢å¼(é€šè¿‡ä¼ å…¥ä¸€ä¸ªæ•´å‹å€¼å‚æ•°ï¼Œæ„é€ ä¸€ä¸ªå­è¡¨è¾¾å¼ä¸ºæ•´æ•°è¡¨è¾¾å¼çš„ä¸€å…ƒè¡¨è¾¾å¼ï¼‰
+// opä¸ºæ“ä½œç¬¦ï¼Œaä¸ºå­è¡¨è¾¾å¼çš„æ•´å‹å€¼
 void Expr_initUnaryX(Expr* expr, const char* op, int a) {
   Expr* intExpr = Expr_new(lw_oopc_file_line);
   Unary_node* unaryNode = Unary_node_new(lw_oopc_file_line);
@@ -44,16 +44,16 @@ void Expr_initUnaryX(Expr* expr, const char* op, int a) {
   Expr_delete(intExpr);
 }
 
-// ¹¹½¨¶şÔª±í´ïÊ½£¨°üº¬Ò»¸ö²Ù×÷·û£¬¶ş¸ö×Ó±í´ïÊ½£©
-// opÎª²Ù×÷·û£¬leftÎª×ó×Ó±í´ïÊ½£¬rightÎªÓÒ×Ó±í´ïÊ½
+// æ„å»ºäºŒå…ƒè¡¨è¾¾å¼ï¼ˆåŒ…å«ä¸€ä¸ªæ“ä½œç¬¦ï¼ŒäºŒä¸ªå­è¡¨è¾¾å¼ï¼‰
+// opä¸ºæ“ä½œç¬¦ï¼Œleftä¸ºå·¦å­è¡¨è¾¾å¼ï¼Œrightä¸ºå³å­è¡¨è¾¾å¼
 void Expr_initBinary(Expr* expr, const char* op, Expr* left, Expr* right) {
   Binary_node* binaryNode = Binary_node_new(lw_oopc_file_line);
   binaryNode->init(binaryNode, op, left, right);
   expr->p = SUPER_PTR(binaryNode, Expr_node);
 }
 
-// ¹¹½¨¶şÔª±í´ïÊ½µÄÖØÔØĞÎÊ½(Í¨¹ı´«ÈëÁ½¸öÕûĞÍÖµ²ÎÊı£¬¹¹ÔìÁ½¸ö×Ó±í´ïÊ½¾ùÎªÕûÊı±í´ïÊ½µÄ¶şÔª±í´ïÊ½£©
-// opÎª²Ù×÷·û£¬aÎª×ó×Ó±í´ïÊ½µÄÕûĞÍÖµ£¬bÎªÓÒ×Ó±í´ïÊ½µÄÕûĞÍÖµ
+// æ„å»ºäºŒå…ƒè¡¨è¾¾å¼çš„é‡è½½å½¢å¼(é€šè¿‡ä¼ å…¥ä¸¤ä¸ªæ•´å‹å€¼å‚æ•°ï¼Œæ„é€ ä¸¤ä¸ªå­è¡¨è¾¾å¼å‡ä¸ºæ•´æ•°è¡¨è¾¾å¼çš„äºŒå…ƒè¡¨è¾¾å¼ï¼‰
+// opä¸ºæ“ä½œç¬¦ï¼Œaä¸ºå·¦å­è¡¨è¾¾å¼çš„æ•´å‹å€¼ï¼Œbä¸ºå³å­è¡¨è¾¾å¼çš„æ•´å‹å€¼
 void Expr_initBinaryX(Expr* expr, const char* op, int a, int b) {
   Expr* left = Expr_new(lw_oopc_file_line);
   Expr* right = Expr_new(lw_oopc_file_line);
@@ -69,7 +69,7 @@ void Expr_initBinaryX(Expr* expr, const char* op, int a, int b) {
   Expr_delete(right);
 }
 
-// ´òÓ¡±í´ïÊ½£¨×ÓÊ÷£©
+// æ‰“å°è¡¨è¾¾å¼ï¼ˆå­æ ‘ï¼‰
 void Expr_print(Expr* t) {
   Expr_node* p = t->p;
   p->print(p);
@@ -82,12 +82,12 @@ FUNCTION_SETTING(initUnaryX, Expr_initUnaryX);
 FUNCTION_SETTING(initBinary, Expr_initBinary);
 FUNCTION_SETTING(initBinaryX, Expr_initBinaryX);
 FUNCTION_SETTING(print, Expr_print);
-cthis->use = 1;             // ¹¹Ôìº¯ÊıÖĞ£¬½«ÒıÓÃ¼ÆÊı³õÊ¼»¯Îª1
+cthis->use = 1;             // æ„é€ å‡½æ•°ä¸­ï¼Œå°†å¼•ç”¨è®¡æ•°åˆå§‹åŒ–ä¸º1
 END_CTOR
 
-// ExprµÄÎö¹¹º¯Êı£¨DTOR/END_DTORÓÃÓÚÊµÏÖÎö¹¹º¯ÊıÓïÒå£©
+// Exprçš„ææ„å‡½æ•°ï¼ˆDTOR/END_DTORç”¨äºå®ç°ææ„å‡½æ•°è¯­ä¹‰ï¼‰
 DTOR(Expr)
-if (--cthis->use == 0) {      // µİ¼õÒıÓÃ¼ÆÊı£¬Èç¹û¼ÆÊıÎª0£¬ÊÍ·Å×Ô¼º
+if (--cthis->use == 0) {      // é€’å‡å¼•ç”¨è®¡æ•°ï¼Œå¦‚æœè®¡æ•°ä¸º0ï¼Œé‡Šæ”¾è‡ªå·±
   Expr_node_delete(cthis->p);
   return lw_oopc_true;
 }
@@ -95,20 +95,20 @@ if (--cthis->use == 0) {      // µİ¼õÒıÓÃ¼ÆÊı£¬Èç¹û¼ÆÊıÎª0£¬ÊÍ·Å×Ô¼º
 return lw_oopc_false;
 END_DTOR
 
-// ÕûÊı±í´ïÊ½½ÚµãµÄ³õÊ¼»¯
+// æ•´æ•°è¡¨è¾¾å¼èŠ‚ç‚¹çš„åˆå§‹åŒ–
 void Int_node_init(Int_node* t, int k) {
   t->n = k;
 }
 
-// ÕûÊı±í´ïÊ½½ÚµãµÄ´òÓ¡
+// æ•´æ•°è¡¨è¾¾å¼èŠ‚ç‚¹çš„æ‰“å°
 void Int_node_print(Expr_node* t) {
   Int_node* cthis = SUB_PTR(t, Expr_node, Int_node);
   printf("%d", cthis->n);
 }
 
-// ÕûÊı±í´ïÊ½½ÚµãµÄ×ÊÔ´ÇåÀí
+// æ•´æ•°è¡¨è¾¾å¼èŠ‚ç‚¹çš„èµ„æºæ¸…ç†
 void Int_node_finalize(Expr_node* t) {
-  // Ê²Ã´¶¼²»ĞèÒª×ö
+  // ä»€ä¹ˆéƒ½ä¸éœ€è¦åš
 }
 
 CTOR(Int_node)
@@ -118,20 +118,20 @@ FUNCTION_SETTING(Expr_node.print, Int_node_print);
 FUNCTION_SETTING(Expr_node.finalize, Int_node_finalize);
 END_CTOR
 
-// ÉèÖÃ½ÚµãµÄ²Ù×÷·û
+// è®¾ç½®èŠ‚ç‚¹çš„æ“ä½œç¬¦
 void setOp(char* opAddr, const char* opValue) {
   memset(opAddr, 0, 3);
   strncpy(opAddr, opValue, 2);
 }
 
-// Ò»Ôª±í´ïÊ½½ÚµãµÄ³õÊ¼»¯
+// ä¸€å…ƒè¡¨è¾¾å¼èŠ‚ç‚¹çš„åˆå§‹åŒ–
 void Unary_node_init(Unary_node* t, const char* opValue, Expr* b) {
   setOp(t->op, opValue);
   t->opnd = b;
-  ++b->use;   // Ö¸Õë¸³ÖµÊ±£¬½«Ö¸ÕëËùÖ¸¶ÔÏóµÄÒıÓÃ¼ÆÊı×ÔÔö
+  ++b->use;   // æŒ‡é’ˆèµ‹å€¼æ—¶ï¼Œå°†æŒ‡é’ˆæ‰€æŒ‡å¯¹è±¡çš„å¼•ç”¨è®¡æ•°è‡ªå¢
 }
 
-// Ò»Ôª±í´ïÊ½½ÚµãµÄ´òÓ¡
+// ä¸€å…ƒè¡¨è¾¾å¼èŠ‚ç‚¹çš„æ‰“å°
 void Unary_node_print(Expr_node* t) {
   Unary_node* cthis = SUB_PTR(t, Expr_node, Unary_node);
   Expr* opnd = cthis->opnd;
@@ -142,7 +142,7 @@ void Unary_node_print(Expr_node* t) {
   printf(")");
 }
 
-// Ò»Ôª±í´ïÊ½½ÚµãµÄ×ÊÔ´ÇåÀí
+// ä¸€å…ƒè¡¨è¾¾å¼èŠ‚ç‚¹çš„èµ„æºæ¸…ç†
 void Unary_node_finalize(Expr_node* t) {
   Unary_node* cthis = SUB_PTR(t, Expr_node, Unary_node);
 
@@ -156,16 +156,16 @@ FUNCTION_SETTING(Expr_node.print, Unary_node_print);
 FUNCTION_SETTING(Expr_node.finalize, Unary_node_finalize);
 END_CTOR
 
-// ¶şÔª±í´ïÊ½½ÚµãµÄ³õÊ¼»¯
+// äºŒå…ƒè¡¨è¾¾å¼èŠ‚ç‚¹çš„åˆå§‹åŒ–
 void Binary_node_init(Binary_node* t, const char* opValue, Expr* left, Expr* right) {
   setOp(t->op, opValue);
   t->left = left;
   t->right = right;
-  ++left->use;    // Ö¸Õë¸³ÖµÊ±£¬½«Ö¸ÕëËùÖ¸¶ÔÏóµÄÒıÓÃ¼ÆÊı×ÔÔö
-  ++right->use;   // Ö¸Õë¸³ÖµÊ±£¬½«Ö¸ÕëËùÖ¸¶ÔÏóµÄÒıÓÃ¼ÆÊı×ÔÔö
+  ++left->use;    // æŒ‡é’ˆèµ‹å€¼æ—¶ï¼Œå°†æŒ‡é’ˆæ‰€æŒ‡å¯¹è±¡çš„å¼•ç”¨è®¡æ•°è‡ªå¢
+  ++right->use;   // æŒ‡é’ˆèµ‹å€¼æ—¶ï¼Œå°†æŒ‡é’ˆæ‰€æŒ‡å¯¹è±¡çš„å¼•ç”¨è®¡æ•°è‡ªå¢
 }
 
-// ¶şÔª±í´ïÊ½½ÚµãµÄ´òÓ¡
+// äºŒå…ƒè¡¨è¾¾å¼èŠ‚ç‚¹çš„æ‰“å°
 void Binary_node_print(Expr_node* t) {
   Binary_node* cthis = SUB_PTR(t, Expr_node, Binary_node);
 
@@ -179,7 +179,7 @@ void Binary_node_print(Expr_node* t) {
   printf(")");
 }
 
-// ¶şÔª±í´ïÊ½½ÚµãµÄ×ÊÔ´ÇåÀí
+// äºŒå…ƒè¡¨è¾¾å¼èŠ‚ç‚¹çš„èµ„æºæ¸…ç†
 void Binary_node_finalize(Expr_node* t) {
   Binary_node* cthis = SUB_PTR(t, Expr_node, Binary_node);
 

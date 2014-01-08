@@ -1,5 +1,0 @@
-lw_oopc: memory leak:
-memory leak in: 0x1ab6950, size: 40, file: expr.c, line: 20
-memory leak in: 0x1ab67e0, size: 48, file: expr.c, line: 37
-memory leak in: 0x1ab6650, size: 80, file: expr.c, line: 36
-memory leak in: 0x1ab6010, size: 80, file: main.c, line: 5
