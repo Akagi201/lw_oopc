@@ -27,6 +27,8 @@
 #ifndef LW_OOPC_H_INCLUDED_
 #define LW_OOPC_H_INCLUDED_
 
+#include <malloc.h>
+
 // 配置宏(两种配置选其一):
 // LW_OOPC_USE_STDDEF_OFFSETOF          表示使用C标准定义的offsetof
 // LW_OOPC_USE_USER_DEFINED_OFFSETOF    表示使用用户自定义的lw_oopc_offsetof宏
@@ -34,13 +36,10 @@
 //#define LW_OOPC_USE_USER_DEFINED_OFFSETOF
 
 // 是否支持内存泄露检测，缺省不支持
-//#define LW_OOPC_SUPPORT_MEMORY_LEAK_DETECTOR
+#define LW_OOPC_SUPPORT_MEMORY_LEAK_DETECTOR
 
-#include <malloc.h>
-
-typedef int lw_oopc_bool;
-#define lw_oopc_true	(1)
-#define lw_oopc_false	(0)
+// 是否支持调试信息打印(内存分配和释放的详细信息），缺省关闭打印
+#define LW_OOPC_PRINT_DEBUG_INFO
 
 #ifdef LW_OOPC_USE_STDDEF_OFFSETOF
 #include <stddef.h>
@@ -51,6 +50,10 @@ typedef int lw_oopc_bool;
 // 有些环境可能不支持，不过，这种情形极少出现
 #define LW_OOPC_OFFSETOF(s,m) (size_t)&(((s*)0)->m)
 #endif
+
+typedef int lw_oopc_bool;
+#define lw_oopc_true	(1)
+#define lw_oopc_false	(0)
 
 #ifdef LW_OOPC_SUPPORT_MEMORY_LEAK_DETECTOR
 

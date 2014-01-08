@@ -16,7 +16,7 @@ void Animal_setAge(Animal* t, int age)
 /* 动物和我们打招呼 */
 void Animal_sayHello(Animal* t)
 {
-    printf("Hello! 我是%s，今年%d岁了！\n", t->name, t->age);
+    printf("Hello! 我是%s，今年%d岁了! \n", t->name, t->age);
 }
 /* 初始化动物的昵称和年龄 */
 void Animal_init(Animal* t, const char* name, int age)
@@ -35,17 +35,17 @@ END_ABS_CTOR
 /* 鱼的吃行为 */
 void Fish_eat(Animal* t)
 {
-    printf("鱼吃水草！\n");
+    printf("鱼吃水草! \n");
 }
 /* 鱼的呼吸行为 */
 void Fish_breathe(Animal* t)
 {
-    printf("鱼用鳃呼吸！\n");
+    printf("鱼用鳃呼吸! \n");
 }
 /* 鱼的移动行为 */
 void Fish_move(IMoveable* t)
 {
-    printf("鱼在水里游！\n");
+    printf("鱼在水里游! \n");
 }
 /* 初始化鱼的昵称和年龄 */
 void Fish_init(Fish* t, const char* name, int age)
@@ -66,17 +66,17 @@ END_CTOR
 /* 狗的吃行为 */
 void Dog_eat(Animal* t)
 {
-    printf("狗吃骨头！\n");
+    printf("狗吃骨头! \n");
 }
 /* 狗的呼吸行为 */
 void Dog_breathe(Animal* t)
 {
-    printf("狗用肺呼吸！\n");
+    printf("狗用肺呼吸! \n");
 }
 /* 狗的移动行为 */
 void Dog_move(IMoveable* t)
 {
-    printf("狗在地上跑！\n");
+    printf("狗在地上跑! \n");
 }
 /* 初始化狗的昵称和年龄 */
 void Dog_init(Dog* t, const char* name, int age)
@@ -96,7 +96,7 @@ END_CTOR
 
 void Car_move(IMoveable* t)
 {
-    printf("汽车在开动！\n");
+    printf("汽车在开动! \n");
 }
 
 CTOR(Car)

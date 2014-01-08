@@ -8,6 +8,7 @@ ABS_CLASS(Expr_node) {
   int use;        // 引用计数
 
   void (* print)(Expr_node* t);        // 打印表达式节点
+                                       //int (*eval)(Expr_node* t, int* value);
   void (* finalize)(Expr_node* t);     // 子类通过覆写finalize方法，实现对资源清理行为的定制
 };
 
@@ -66,8 +67,21 @@ CLASS(Binary_node) {
   Expr* left;             // 左子表达式
   Expr* right;            // 右子表达式
 
-  // 初始化二元表达式节点（传入一个操作符和两个子表达式）
+  // 初始化二元表达式节点（传入操作符和2个子表达式）
   void (* init)(Binary_node* t, const char* a, Expr* b, Expr* c);
+};
+
+// 三元表达式节点
+CLASS(Ternary_node) {
+  EXTENDS(Expr_node);
+
+  char op[3];             // 假设操作符最长不超过2个字符
+  Expr* left;
+  Expr* middle;
+  Expr* right;
+
+  // 初始化三元表达式节点（传入操作符和3个子表达式）
+  void (* init)(Ternary_node* t, const char* op, Expr* left, Expr* middle, Expr* right);
 };
 
 #endif

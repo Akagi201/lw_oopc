@@ -12,7 +12,6 @@ if (--cthis->use == 0) {      // 递减引用计数，如果计数为0，释放自己
   cthis->finalize(cthis); // 释放内存之前先清理资源(其他需要释放的对象）
   return lw_oopc_true;
 }
-
 return lw_oopc_false;
 END_DTOR
 
@@ -69,6 +68,32 @@ void Expr_initBinaryX(Expr* expr, const char* op, int a, int b) {
   Expr_delete(right);
 }
 
+// 构建三元表达式（包含一个操作符，三个子表达式）
+void Expr_initTernary(Expr* expr, const char* op, Expr* left, Expr* middle, Expr* right) {
+  Ternary_node* ternaryNode = Ternary_node_new(lw_oopc_file_line);
+  ternaryNode->init(ternaryNode, op, left, middle, right);
+  expr->p = SUPER_PTR(ternaryNode, Expr_node);
+}
+
+// 构建三元表达式的重载形式(通过传入三个整型值参数，构造三个子表达式均为整数表达式的三元表达式）
+void Expr_initTernaryX(Expr* expr, const char* op, int a, int b, int c) {
+  Expr* left = Expr_new(lw_oopc_file_line);
+  Expr* middle = Expr_new(lw_oopc_file_line);
+  Expr* right = Expr_new(lw_oopc_file_line);
+  Ternary_node* ternaryNode = Ternary_node_new(lw_oopc_file_line);
+
+  left->initInt(left, a);
+  middle->initInt(middle, b);
+  right->initInt(right, c);
+
+  ternaryNode->init(ternaryNode, op, left, middle, right);
+  expr->p = SUPER_PTR(ternaryNode, Expr_node);
+
+  Expr_delete(left);
+  Expr_delete(middle);
+  Expr_delete(right);
+}
+
 // 打印表达式（子树）
 void Expr_print(Expr* t) {
   Expr_node* p = t->p;
@@ -81,6 +106,8 @@ FUNCTION_SETTING(initUnary, Expr_initUnary);
 FUNCTION_SETTING(initUnaryX, Expr_initUnaryX);
 FUNCTION_SETTING(initBinary, Expr_initBinary);
 FUNCTION_SETTING(initBinaryX, Expr_initBinaryX);
+FUNCTION_SETTING(initTernary, Expr_initTernary);
+FUNCTION_SETTING(initTernaryX, Expr_initTernaryX);
 FUNCTION_SETTING(print, Expr_print);
 cthis->use = 1;             // 构造函数中，将引用计数初始化为1
 END_CTOR
@@ -91,7 +118,6 @@ if (--cthis->use == 0) {      // 递减引用计数，如果计数为0，释放自己
   Expr_node_delete(cthis->p);
   return lw_oopc_true;
 }
-
 return lw_oopc_false;
 END_DTOR
 
@@ -192,4 +218,49 @@ SUPER_CTOR(Expr_node);
 FUNCTION_SETTING(init, Binary_node_init);
 FUNCTION_SETTING(Expr_node.print, Binary_node_print);
 FUNCTION_SETTING(Expr_node.finalize, Binary_node_finalize);
+END_CTOR
+
+// 三元表达式节点的初始化
+void Ternary_node_init(Ternary_node* t, const char* opValue,
+                       Expr* left, Expr* middle, Expr* right) {
+  setOp(t->op, opValue);      //(a);
+
+  t->left = left;
+  t->middle = middle;
+  t->right = right;
+  ++left->use;
+  ++middle->use;
+  ++right->use;
+}
+
+// 三元表达式节点的打印
+void Ternary_node_print(Expr_node* t) {
+  Ternary_node* cthis = SUB_PTR(t, Expr_node, Ternary_node);
+  Expr* left = cthis->left;
+  Expr* middle = cthis->middle;
+  Expr* right = cthis->right;
+
+  printf("(");
+  left->print(left);
+  printf(" ? ");
+  middle->print(middle);
+  printf(" : ");
+  right->print(right);
+  printf(")");
+}
+
+// 三元表达式节点的资源清理
+void Ternary_node_finalize(Expr_node* t) {
+  Ternary_node* cthis = SUB_PTR(t, Expr_node, Ternary_node);
+
+  Expr_delete(cthis->left);
+  Expr_delete(cthis->middle);
+  Expr_delete(cthis->right);
+}
+
+CTOR(Ternary_node)
+SUPER_CTOR(Expr_node);
+FUNCTION_SETTING(init, Ternary_node_init);
+FUNCTION_SETTING(Expr_node.print, Ternary_node_print);
+FUNCTION_SETTING(Expr_node.finalize, Ternary_node_finalize);
 END_CTOR

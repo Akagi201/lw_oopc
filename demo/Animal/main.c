@@ -13,28 +13,28 @@ int main()
     int j = 0;
 
     // 初始化鱼对象的昵称为：小鲤鱼，年龄为：1岁
-    fish->init(fish, "小鲤鱼", 1);          
+    fish->init(fish, "小鲤鱼", 1);
 
     // 将fish指针转型为Animal类型指针，并赋值给animals数组的第一个成员
-    animals[0] = SUPER_PTR(fish, Animal);   
+    animals[0] = SUPER_PTR(fish, Animal);
 
     // 初始化狗对象的昵称为：牧羊犬，年龄为：2岁
-    dog->init(dog, "牧羊犬", 2);            
+    dog->init(dog, "牧羊犬", 2);
 
     // 将dog指针转型为Animal类型指针，并赋值给animals数组的第二个成员
-    animals[1] = SUPER_PTR(dog, Animal);    
+    animals[1] = SUPER_PTR(dog, Animal);
 
-    // 将fish指针转型为IMoveable接口类型指针，并赋值给moveOjbs数组的第一个成员
+    // 将fish指针转型为IMoveable接口类型指针，并赋值给moveObjs数组的第一个成员
     moveObjs[0] = SUPER_PTR(fish, IMoveable);
 
-    // 将dog指针转型为IMoveable接口类型指针，并赋值给moveOjbs数组的第二个成员
-    moveObjs[1] = SUPER_PTR(dog, IMoveable);    
+    // 将dog指针转型为IMoveable接口类型指针，并赋值给moveObjs数组的第二个成员
+    moveObjs[1] = SUPER_PTR(dog, IMoveable);
 
-    // 将car指针转型为IMoveable接口类型指针，并赋值给moveOjbs数组的第三个成员
-    moveObjs[2] = SUPER_PTR(car, IMoveable);  
+    // 将car指针转型为IMoveable接口类型指针，并赋值给moveObjs数组的第三个成员
+    moveObjs[2] = SUPER_PTR(car, IMoveable);
 
     // 循环打印动物容器内的动物信息
-    for (i=0; i<2; i++)
+    for (i = 0; i < 2; ++i)
     {
         Animal* animal = animals[i];
         animal->eat(animal);
@@ -43,7 +43,7 @@ int main()
     }
 
     // 循环打印可移动物体容器内的可移动物体移动方式的信息
-    for (j=0; j<3; j++)
+    for (j = 0; j < 3; ++j)
     {
         IMoveable* moveObj = moveObjs[j];
         moveObj->move(moveObj);
