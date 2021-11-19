@@ -1,6 +1,6 @@
-﻿// Copyright (C) 2008,2009,2010 by Tom Kao & MISOO Team & Yonghua Jin. All rights reserved.
+// Copyright (C) 2008,2009,2010 by Tom Kao & MISOO Team & Yonghua Jin. All rights reserved.
 // Released under the terms of the GNU Library or Lesser General Public License (LGPL).
-// Author: Tom Kao(中文名：高焕堂)，MISOO团队，Yonghua Jin(中文名：金永华)
+// Author: Tom Kao(中文名：高焕堂)，MISOO 团队，Yonghua Jin(中文名：金永华)
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
@@ -29,14 +29,14 @@
 
 #include <malloc.h>
 
-// 配置宏(两种配置选其一):
-#define LW_OOPC_USE_STDDEF_OFFSETOF     // 表示使用C标准定义的offsetof
-// #define LW_OOPC_USE_USER_DEFINED_OFFSETOF // 表示使用用户自定义的lw_oopc_offsetof宏
+// 配置宏 (两种配置选其一):
+#define LW_OOPC_USE_STDDEF_OFFSETOF     // 表示使用 C 标准定义的 offsetof
+// #define LW_OOPC_USE_USER_DEFINED_OFFSETOF // 表示使用用户自定义的 lw_oopc_offsetof 宏
 
 // 是否支持内存泄露检测，缺省不支持
 // #define LW_OOPC_SUPPORT_MEMORY_LEAK_DETECTOR
 
-// 是否支持调试信息打印(内存分配和释放的详细信息），缺省关闭打印
+// 是否支持调试信息打印 (内存分配和释放的详细信息），缺省关闭打印
 // #define LW_OOPC_PRINT_DEBUG_INFO
 
 #ifdef LW_OOPC_USE_STDDEF_OFFSETOF
