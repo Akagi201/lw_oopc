@@ -1,0 +1,7 @@
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+cmake_minimum_required(VERSION 3.0)
+project(demo)
+add_compile_definitions(-D_CRT_SECURE_NO_WARNINGS)
+add_subdirectory(Animal)
+add_subdirectory(Expr)
+add_subdirectory(expr-advance)
