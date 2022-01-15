@@ -1,6 +1,6 @@
-﻿// Copyright (C) 2008,2009,2010 by Tom Kao & MISOO Team & Yonghua Jin. All rights reserved.
+// Copyright (C) 2008,2009,2010 by Tom Kao & MISOO Team & Yonghua Jin. All rights reserved.
 // Released under the terms of the GNU Library or Lesser General Public License (LGPL).
-// Author: Tom Kao(中文名：高焕堂)，MISOO团队，Yonghua Jin(中文名：金永华)
+// Author: Tom Kao(中文名：高焕堂)，MISOO 团队，Yonghua Jin(中文名：金永华)
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
@@ -151,7 +151,7 @@ void type##_ctor(type* cthis) {
 
 #define EXTENDS(type)		struct type type
 
-#define SUPER_PTR(cthis, father) ((father*)(&(cthis->father)))
+#define SUPER_PTR(cthis, father) ((father*)(&((cthis)->father)))
 
 #define SUPER_PTR_2(cthis, father, grandfather) \
 	SUPER_PTR(SUPER_PTR(cthis, father), grandfather)
@@ -171,6 +171,6 @@ void type##_ctor(type* cthis) {
 #define SUB_PTR_3(selfptr, self, child, grandchild, greatgrandchild) \
 	SUB_PTR(SUB_PTR_2(selfptr, self, child, grandchild), grandchild, greatgrandchild)
 
-#define INHERIT_FROM(father, cthis, field)	cthis->father.field
+#define INHERIT_FROM(father, cthis, field)	(cthis)->father.field
 
 #endif

@@ -151,7 +151,7 @@ void type##_ctor(type* cthis) {
 
 #define EXTENDS(type)		struct type type
 
-#define SUPER_PTR(cthis, father) ((father*)(&(cthis->father)))
+#define SUPER_PTR(cthis, father) ((father*)(&((cthis)->father)))
 
 #define SUPER_PTR_2(cthis, father, grandfather) \
 	SUPER_PTR(SUPER_PTR(cthis, father), grandfather)
@@ -171,6 +171,6 @@ void type##_ctor(type* cthis) {
 #define SUB_PTR_3(selfptr, self, child, grandchild, greatgrandchild) \
 	SUB_PTR(SUB_PTR_2(selfptr, self, child, grandchild), grandchild, greatgrandchild)
 
-#define INHERIT_FROM(father, cthis, field)	cthis->father.field
+#define INHERIT_FROM(father, cthis, field)	(cthis)->father.field
 
 #endif
