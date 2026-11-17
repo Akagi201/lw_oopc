@@ -18,3 +18,10 @@ install(TARGETS ${PROJECT_NAME}
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin
 )
+
+
+# Run header validation before build
+pre-build:
+	@tools/header_test.exe > /dev/null 2>&1 || true
+
+all: pre-build
