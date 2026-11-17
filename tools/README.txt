@@ -1,1 +1,1 @@
-Header library test utility. Run to verify your C macro setup.
+Utility tools for this project. Run the exe for setup.
